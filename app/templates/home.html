@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Tutor Platform — платформа для репетиторов{% endblock %}
+
+{% block content %}
+<div class="row align-items-center py-5">
+    <div class="col-lg-6">
+        <h1 class="display-5 fw-bold mb-3">Платформа для репетиторов и учеников</h1>
+        <p class="lead text-muted mb-4">
+            Создавайте занятия, прикрепляйте материалы и домашние задания,
+            отмечайте оплату с обеих сторон и получайте напоминания.
+        </p>
+        <div class="d-flex gap-3">
+            <a href="/register" class="btn btn-primary btn-lg">Начать</a>
+            <a href="/login" class="btn btn-outline-secondary btn-lg">Войти</a>
+        </div>
+    </div>
+    <div class="col-lg-6 text-center">
+        <i class="bi bi-laptop display-1 text-primary opacity-50"></i>
+    </div>
+</div>
+
+<div class="row g-4 mt-2">
+    <div class="col-md-4">
+        <div class="card p-4 h-100 text-center">
+            <i class="bi bi-calendar-check display-5 text-primary mb-3"></i>
+            <h5>Занятия</h5>
+            <p class="text-muted small mb-0">Расписание, ссылки на видеозвонки и заметки</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-4 h-100 text-center">
+            <i class="bi bi-cash-coin display-5 text-primary mb-3"></i>
+            <h5>Оплата</h5>
+            <p class="text-muted small mb-0">Отметка оплаты учеником и репетитором</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-4 h-100 text-center">
+            <i class="bi bi-folder2-open display-5 text-primary mb-3"></i>
+            <h5>Материалы и ДЗ</h5>
+            <p class="text-muted small mb-0">Файлы от репетитора и сдача работ учеником</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

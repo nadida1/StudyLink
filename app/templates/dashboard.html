@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Мои занятия — Tutor Platform{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Мои занятия</h2>
+    {% if user.role == "tutor" %}
+        <a href="/lessons/new" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Новое занятие
+        </a>
+    {% endif %}
+</div>
+
+{% if not lessons %}
+    <div class="card p-5 text-center text-muted">
+        <i class="bi bi-calendar-x display-4 d-block mb-3"></i>
+        Пока нет занятий
+    </div>
+{% else %}
+    <div class="row g-3">
+        {% for lesson in lessons %}
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <h5 class="card-title mb-0">{{ lesson.title }}</h5>
+                        {% if lesson.is_fully_paid %}
+                            <span class="badge badge-paid">Оплачено</span>
+                        {% else %}
+                            <span class="badge badge-unpaid">Не оплачено</span>
+                        {% endif %}
+                    </div>
+                    <p class="text-muted small mb-2">
+                        <i class="bi bi-calendar-event"></i>
+                        {{ lesson.scheduled_at.strftime("%d.%m.%Y %H:%M") }}
+                        · {{ lesson.duration_minutes }} мин
+                    </p>
+                    {% if lesson.meeting_link %}
+                        <p class="mb-2">
+                            <a href="{{ lesson.meeting_link }}" target="_blank" class="small">
+                                <i class="bi bi-camera-video"></i> Ссылка на занятие
+                            </a>
+                        </p>
+                    {% endif %}
+                    {% if lesson.notes %}
+                        <p class="small text-muted">{{ lesson.notes }}</p>
+                    {% endif %}
+
+                    <div class="mt-3 d-flex gap-2 flex-wrap">
+                        {% if not lesson.is_fully_paid %}
+                            <form method="post" action="/lessons/{{ lesson.id }}/pay" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-outline-success">
+                                    Отметить оплату
+                                </button>
+                            </form>
+                        {% endif %}
+                        <a href="/lessons/{{ lesson.id }}" class="btn btn-sm btn-outline-primary">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

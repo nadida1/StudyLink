@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Вход — Tutor Platform{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4">
+            <h3 class="mb-4 text-center">Вход</h3>
+            <form method="post" action="/login">
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" required
+                           value="tutor@example.com">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Пароль</label>
+                    <input type="password" name="password" class="form-control" required
+                           value="123456">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Войти</button>
+            </form>
+            <p class="text-center mt-3 mb-0 text-muted">
+                Нет аккаунта? <a href="/register">Зарегистрироваться</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

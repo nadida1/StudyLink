@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Новое занятие — Tutor Platform{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card p-4">
+            <h3 class="mb-4">Новое занятие</h3>
+            <form method="post" action="/lessons/new">
+                <div class="mb-3">
+                    <label class="form-label">Название</label>
+                    <input type="text" name="title" class="form-control" value="Занятие" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ученик</label>
+                    <select name="student_id" class="form-select" required>
+                        <option value="">— выберите ученика —</option>
+                        {% for s in students %}
+                            <option value="{{ s.id }}">{{ s.full_name }} ({{ s.email }})</option>
+                        {% endfor %}
+                    </select>
+                    {% if not students %}
+                        <div class="form-text text-warning">Пока нет зарегистрированных учеников. Сначала создай аккаунт ученика.</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Дата и время</label>
+                    <input type="datetime-local" name="scheduled_at" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Длительность (минуты)</label>
+                    <input type="number" name="duration_minutes" class="form-control" value="60" min="15" max="180">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ссылка на занятие</label>
+                    <input type="url" name="meeting_link" class="form-control" placeholder="https://meet.google.com/...">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Заметки</label>
+                    <textarea name="notes" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary" {% if not students %}disabled{% endif %}>Создать</button>
+                    <a href="/dashboard" class="btn btn-outline-secondary">Отмена</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

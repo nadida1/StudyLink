@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Регистрация — Tutor Platform{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4">
+            <h3 class="mb-4 text-center">Регистрация</h3>
+            <form method="post" action="/register">
+                <div class="mb-3">
+                    <label class="form-label">Имя</label>
+                    <input type="text" name="full_name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Пароль</label>
+                    <input type="password" name="password" class="form-control" required minlength="6">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Роль</label>
+                    <select name="role" class="form-select">
+                        <option value="student">Ученик</option>
+                        <option value="tutor">Репетитор</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Создать аккаунт</button>
+            </form>
+            <p class="text-center mt-3 mb-0 text-muted">
+                Уже есть аккаунт? <a href="/login">Войти</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
